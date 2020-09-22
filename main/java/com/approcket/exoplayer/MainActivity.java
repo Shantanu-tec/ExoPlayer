@@ -162,6 +162,63 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+     option_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                alertDialog.setTitle("Playback Speed");
+                String[] items = {"0.5x","1x","1.5x","2x","2.5x","3x"};
+                boolean[] checkedItems = {false, false, false, false, false,false};
+                alertDialog.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        switch (which) {
+                            case 0:
+                                if(isChecked)
+                                    playbackSpeed(0.5f);
+
+                                break;
+                            case 1:
+                                if(isChecked)
+                                    playbackSpeed(1f);
+                                    break;
+                            case 2:
+                                if(isChecked)
+                                    playbackSpeed(1.5f);
+                                    break;
+                            case 3:
+                                if(isChecked)
+                                    playbackSpeed(2f);
+                                    break;
+                            case 4:
+                                if(isChecked)
+                                    playbackSpeed(2.5f);
+                                    break;
+                            case 5:
+                                if(isChecked)
+                                    playbackSpeed(3f);
+                                    break;
+                        }
+                    }
+                });
+                AlertDialog alert = alertDialog.create();
+                alert.setCanceledOnTouchOutside(true);
+                alert.show();
+
+
+            }
+        });
+    }
+
+    public void playbackSpeed(float speed)
+    {
+        PlaybackParams params= null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            params = new PlaybackParams();
+            params.setSpeed(speed);
+        }
+        simpleExoPlayer.setPlaybackParams(params);
+    }
 
     @Override
     protected void onPause() {
