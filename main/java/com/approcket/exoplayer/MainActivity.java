@@ -149,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
                     //set portrait orientation
 
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) playerView.getLayoutParams();
+                    params.width = params.MATCH_PARENT;
+                    params.height = (int) ( 200 * getApplicationContext().getResources().getDisplayMetrics().density);
+                    playerView.setLayoutParams(params);
 
                     flag=false;
                 }else{
@@ -156,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
                     .getDrawable(R.drawable.ic_baseline_fullscreen_exit_24));
 
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) playerView.getLayoutParams();
+            params.width = params.MATCH_PARENT;
+            params.height = params.MATCH_PARENT;
+            playerView.setLayoutParams(params);
 
                     flag=true;
                 }
